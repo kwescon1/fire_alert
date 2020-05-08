@@ -62,38 +62,40 @@
                        
                       </thead>
                       <tbody>
-                        @foreach($final as $data)
-                          @if(auth()->user()->name == $data['station']['name'] && $data['status'] === "Fire")
-                             <tr>
-                              <td class="text-center">
-                               {{$data['customer_name']}}
-                              </td>
-                              <td class="text-center">
-                               {{$data['location']}}
-                              </td>
-                              <td class="text-center">
-                               {{$data['intensity']}}
-                              </td>
-                            
-                              <td class="text-center">
-                                {{$data['status']}}
-                              </td>
-                              <td class="text-center">
-                                {{$data['station']['name']}}
-                              </td>
-                              </a>
-                              <td class="text-center"><a href="{{ URL('map/'.$data['lng'].'/'.$data['lat'].'/'.$data['location']) }}">Route</a></td>
-                              {{-- <td class="text-center">
-                                {{$data['lat']}}
-                              </td>
-                              <td class="text-center">
-                                {{$data['lng']}}
-                              </td> --}}
-                            </tr>
-                          @else
-                         <marquee><h3> No fire incident availble</h3></marquee>
-                          @endif
-                        @endforeach
+                        @if($final)
+                          @foreach($final as $data)
+                              @if($data['status'] == 'Fire')
+                                <tr>
+                                  <td class="text-center">
+                                   {{$data['customer_name']}}
+                                  </td>
+                                  <td class="text-center">
+                                   {{$data['location']}}
+                                  </td>
+                                  <td class="text-center">
+                                   {{$data['intensity']}}
+                                  </td>
+                                
+                                  <td class="text-center">
+                                    {{$data['status']}}
+                                  </td>
+                                  <td class="text-center">
+                                    {{$data['station']['name']}}
+                                  </td>
+                                  </a>
+                                  <td class="text-center"><a href="{{ URL('map/'.$data['lng'].'/'.$data['lat'].'/'.$data['location']) }}">Route</a></td>
+                                  {{-- <td class="text-center">
+                                    {{$data['lat']}}
+                                  </td>
+                                  <td class="text-center">
+                                    {{$data['lng']}}
+                                  </td> --}}
+                                </tr>
+                              @endif
+                          @endforeach
+                        @else
+                          <marquee><h3> No fire incident availble</h3></marquee>
+                        @endif
                       </tbody>
                     </table>
                   </div>

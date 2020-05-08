@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Logistic;
 use App\User;
 use JavaScript;
-
+use Auth;
 
 class FireAlertController extends Controller
 {
@@ -68,79 +68,88 @@ class FireAlertController extends Controller
 
 
     public function final($stations,$data){
-
+        
     	$temp = [];
-    	foreach($stations as $station) {
-    		foreach($data as $d) {
-    			$res = json_decode($this->client->request("POST","https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$station['latitude'].",".$station['longitude']."&destinations=".$d['lat'].",".$d['lng']."&key=AIzaSyB7kMDqCrPcVv4uCROO1GOev9XCDqUEAAo")->getBody()->getContents(), true);
+    	// foreach($stations as $station) {
+    	// 	foreach($data as $d) {
+    	// 		$res = json_decode($this->client->request("POST","https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$station['latitude'].",".$station['longitude']."&destinations=".$d['lat'].",".$d['lng']."&key=AIzaSyB7kMDqCrPcVv4uCROO1GOev9XCDqUEAAo")->getBody()->getContents(), true);
 
-    			$distance = str_replace("mi", "", $res['rows'][0]['elements'][0]["distance"]['text']);;
+    	// 		$distance = str_replace("mi", "", $res['rows'][0]['elements'][0]["distance"]['text']);;
 
     			 
-    			$d['distance'] = $distance;
-    			$d['station'] = $station;
-    			array_push($temp, $d);
+    	// 		$d['distance'] = $distance;
+    	// 		$d['station'] = $station;
+    	// 		array_push($temp, $d);
     			
 
-    		}
-    	}
+    	// 	}
+    	// }
+
+        foreach($data as $d) {
+            $temp_stations = [];
+            foreach($stations as $station) {
+                $res = json_decode($this->client->request("POST","https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=".$station['latitude'].",".$station['longitude']."&destinations=".$d['lat'].",".$d['lng']."&key=AIzaSyB7kMDqCrPcVv4uCROO1GOev9XCDqUEAAo")->getBody()->getContents(), true);
+
+                $distance = str_replace("mi", "", $res['rows'][0]['elements'][0]["distance"]['text']);;
+
+                array_push($temp_stations, [
+                    'id' => $station->id, 
+                    'name' => $station->name,
+                    'email' => $station->email,
+                    'distance' => $distance
+                ]);
+
+            }
+
+            array_push($temp, [
+                'device_id' => $d['device_id'], 
+                'customer_name' => $d['customer_name'],
+                'location' => $d['location'],
+                'intensity' => $d['intensity'],
+                'status' => $d['status'],
+                'lat' => $d['lat'],
+                'lng' => $d['lng'],
+                'stations' => $temp_stations
+            ]);
+        }
         
     	return $this->check($temp);
 
     }
 
-    public function check($temp){
-        // return $temp;
+    public function check($temps){
         //the problem is from here..
-            // foreach ($temp as $data) {
-                // $dis = [];
-        $database = $this->initDB();
-        $customer = $database->getReference('customer')->getSnapshot()->getValue();
-        for ($i=0; $i < sizeof($temp) ; $i++) { 
-            $min['dis'] = floatval($temp[$i]['distance']);
-            $num[] = min($min);
-        }
-        // return $num;
+            
+        $final = [];
 
-        // for ($i=0; $i < sizeof($num) ; $i++) { 
-        //     if($num[$i] == floatval($temp[$i]['distance'])){
-        //         // $min[] = min($num[$i]);
-        //         print "me";
-        //     }
-        // }
-        // return $min;
+        foreach($temps as $t) {
+            $stations = $t['stations'];
 
-        // $data = [];
-        //     for ($i=0; $i < sizeof($temp); $i++) {
-                
-        //         foreach ($customer as $person) {
-        //             if($person['device_id'] == $temp[$i]['device_id']) {
-        //                 $min['dis'] = floatval($temp[$i]['distance']);
-        //                 // $num[] = $min;
-        //                 array_push($data,$min);
+            $min = $stations[0]['distance'];
+            $index = 0;
 
-        //             }
-                    
-        //         } 
-        //         // array_push($dis,$num);
-        //     }
-        //     // }
-        //     return $data;
-        //     return $num;
-           // return sizeof($num);
-
-        
-            $final = [];
-            for ($i=0; $i < sizeof($num); $i++) { 
-                foreach ($temp as $data) {
-                    if($num[$i] == floatval($data['distance'])){
-                        array_push($final,$data);
-                    }
+            for($i=0; $i<count($stations); $i++){
+                if($stations[$i]['distance'] < $min) {
+                    $min = $station[$i]['distance'];
+                    $index = $i;
                 }
             }
-            // return $final;
-    
-        // print_r($final);
+
+            if($stations[$index]['email'] == Auth::user()->email){
+                array_push($final, [
+                    'device_id' => $t['device_id'], 
+                    'customer_name' => $t['customer_name'],
+                    'location' => $t['location'],
+                    'status' => $t['status'],
+                    'intensity' => $t['intensity'],
+                    'lat' => $t['lat'],
+                    'lng' => $t['lng'],
+                    'station' => $stations[$index]
+                ]);
+            }
+
+        }
+        
 
         return view('admin.fire_location')->with('final',$final);
             
