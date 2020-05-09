@@ -195,10 +195,56 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="chart-area align-items-center d-flex justify-content-center">
-                    <h3>0</h3>
-                    <h3>0</h3>
-                  </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    {{-- <thead class=" text-primary text-center">
+                      <th>
+                        N
+                      </th>
+                      <th>
+                        Values
+                      </th>
+                      <th>
+                        Persons
+                      </th>
+                    </thead> --}}
+                    <tbody class="text-center">
+                      <tr>
+                        <td>
+                          Water Volume
+                        </td>
+                        <td>
+                          {{$logistics->water_volume}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Extinguisher
+                        </td>
+                        <td>{{-- {{ $logistic ?? '' }} --}}
+                          {{$logistics->fire_extinguisher}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Fire Trucks
+                        </td>
+                        <td>
+                          {{$logistics->fire_trucks}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Persons
+                        </td>
+                        <td>
+                          {{$logistics->number_of_persons}}
+                        </td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -207,6 +253,7 @@
               </div>
             </div>
           </div>
+
           </div>
           
         </div>
