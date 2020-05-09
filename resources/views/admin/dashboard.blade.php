@@ -197,17 +197,6 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    {{-- <thead class=" text-primary text-center">
-                      <th>
-                        N
-                      </th>
-                      <th>
-                        Values
-                      </th>
-                      <th>
-                        Persons
-                      </th>
-                    </thead> --}}
                     <tbody class="text-center">
                       <tr>
                         <td>
@@ -260,6 +249,10 @@
       </div>
  @endsection
 
+ @section('footer')
+  Integrity.Fairness.Service
+ @endsection
+
 @section('scripts')
   <script>
     $(document).ready(function() {
@@ -270,9 +263,6 @@
   </script>
  @endsection
  
- @section('footer')
-  Integrity.Fairness.Service
- @endsection
 
  
 
