@@ -33,25 +33,6 @@
 
     @yield('content')
 
-
-
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav>
-            <ul>
-              <li>
-              @yield('footer')
-              </li>       
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy;
-            <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>,Fire Management <img src="{{asset('media/logo/logo.jpg')}}" width="40px" style="border-radius: 100%">
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
   <!--   Core JS Files   -->

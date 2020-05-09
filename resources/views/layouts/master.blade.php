@@ -102,12 +102,15 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             @yield('form')
+          
             <ul class="navbar-nav">
+              @inject('count','App\Http\Controllers\Controller')
               <li class="nav-item">
-                <a class="nav-link" href="{{url('admin')}}">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
+                <a class="nav-link" href="{{url('fire_alert_info')}}">
+                  <i class="now-ui-icons travel_info">
+                    <sup style="vertical-align: super; font-size: small; "><div class="numberCircle">{{count($count->data())}}</div></sup></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
+                    <span class="d-lg-none d-md-block">Notifications : {{count($count->data())}}</span>
                   </p>
                 </a>
               </li>

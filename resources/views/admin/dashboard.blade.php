@@ -92,7 +92,7 @@
              <div class="col-lg-4">
               <div class="card card-chart">
                 <div class="card-header">
-                  <h5 class="card-category">Info</h5>
+                  <h5 class="card-category" style="font-weight: bold; color: red;"><a href="{{url('fire_alert_info')}}">Notifications : {{$finalcount}}</a> </h5>
                   <h4 class="card-title">Total Reported Incidents</h4>
                   <div class="dropdown">
                     <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
@@ -136,7 +136,7 @@
               <div class="card-body">
                 <div class="chart-area align-items-center d-flex justify-content-center">
                     {{-- <canvas id="lineChartExample"></canvas> --}}
-                    <h3>0</h3>
+                    <h3>{{$solved_fire}}</h3>
                   </div>
               </div>
               <div class="card-footer">
@@ -196,8 +196,8 @@
               </div>
               <div class="card-body">
                 <div class="chart-area align-items-center d-flex justify-content-center">
-                    {{-- <h3>0</h3><br>
-                    <h3>0</h3> --}}
+                    <h3>0</h3>
+                    <h3>0</h3>
                   </div>
               </div>
               <div class="card-footer">
@@ -207,50 +207,6 @@
               </div>
             </div>
           </div>
-          </div>
-          
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card  card-tasks">
-              <div class="card-header ">
-                <h4 class="card-title">Notification</h4>
-              </div>
-              @if($logistics == null || $logistics->water_volume < 3000 || $logistics->fire_extinguisher < 3 || $logistics->fire_trucks <=1 || $logistics->number_of_persons < 3)
-                <div class="card-body ">
-                  <div class="table-full-width table-responsive">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <td class="text-left">No available task. Thank you</td>
-                          
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                @else
-                <div class="card-body ">
-                  <div class="table-full-width table-responsive">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <td class="text-left"><a href="fire_alert_info">Task may exist. Please check client fire location</a> </td>
-                          
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                @endif
-              
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-                </div>
-              </div>
-            </div>
           </div>
           
         </div>
