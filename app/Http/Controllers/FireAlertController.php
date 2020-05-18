@@ -11,9 +11,10 @@ class FireAlertController extends Controller
     
     public function fireInfo(){
         $final = $this->data();
+        $logistics = $this->logistics();
 
-     return view('admin.fire_location')->with('final',$final);
-    }
+     return view('admin.fire_location', compact('final','logistics'));
+    } 
     
 
     public function map(Request $request){

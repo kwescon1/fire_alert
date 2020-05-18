@@ -105,20 +105,39 @@
           
             <ul class="navbar-nav">
               @inject('count','App\Http\Controllers\Controller')
+              
               <li class="nav-item">
+                @if($count->logistics() && $count->logistics()->water_volume >= 3000 && $count->logistics()->fire_extinguisher >= 3 && $count->logistics()->fire_trucks >1 && $count->logistics()->number_of_persons > 3)
                 <a class="nav-link" href="{{url('fire_alert_info')}}">
+                  @if($count->data())
                   <i class="now-ui-icons travel_info">
                     <sup style="vertical-align: super; font-size: small; "><div class="numberCircle">{{count($count->data())}}</div></sup></i>
                   <p>
                     <span class="d-lg-none d-md-block">Notifications : {{count($count->data())}}</span>
                   </p>
+                  @else
+                    <i class="now-ui-icons travel_info"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Notifications
+                    </span>
+                  </p> 
+                  @endif
                 </a>
+                @else
+
+                <a class="nav-link" href="{{url('fire_alert_info')}}">
+                    <i class="now-ui-icons travel_info"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Notifications
+                    </span>
+                  </p> 
+                </a>
+                @endif
               </li>
 
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="now-ui-icons users_single-02"></i>
                     {{ Auth::user()->name }}
-                     {{-- <span class="caret"></span> --}}
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -34,8 +34,8 @@
                 <div class="card-header">
                   <h4 class="card-title"></h4>
                 </div>
-                
                 <div class="card-body">
+                  @if($logistics && $logistics->water_volume >= 3000 && $logistics->fire_extinguisher >= 3 && $logistics->fire_trucks >1 && $logistics->number_of_persons > 3)
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">
@@ -84,12 +84,6 @@
                                   </td>
                                   </a>
                                   <td class="text-center"><a href="{{ URL('map/'.$data['lng'].'/'.$data['lat'].'/'.$data['location']) }}">Route</a></td>
-                                  {{-- <td class="text-center">
-                                    {{$data['lat']}}
-                                  </td>
-                                  <td class="text-center">
-                                    {{$data['lng']}}
-                                  </td> --}}
                                 </tr>
                               @endif
                           @endforeach
@@ -99,8 +93,10 @@
                       </tbody>
                     </table>
                   </div>
+                  @else
+                  <marquee><h3> Insufficient Logistics</h3></marquee>
+                @endif
                 </div>
-
               </div>
             </div>
             

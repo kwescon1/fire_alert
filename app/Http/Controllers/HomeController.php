@@ -29,11 +29,9 @@ class HomeController extends Controller
     public function index()
     {   
 
-        if(count($this->alert()) >= 0){
-            $finalcount = count($this->alert());
-        }
+        $finalcount = $this->alert();
 
-        
+
         $database = $this->initDB();
 
 
@@ -41,7 +39,7 @@ class HomeController extends Controller
         $fire = $database->getReference('fireinfo')->getSnapshot()->getValue();
 
 
-        $firecount = count($fire);
+        // $firecount = count($fire);
 
         $solution = [];
         foreach ($fire as $solve) {
@@ -49,16 +47,16 @@ class HomeController extends Controller
                 array_push($solution,$solve);
             }
         }
-        $solved_fire = count($solution);
+        // $solved_fire = count($solution);
 
-        $customercount = count($database->getReference('customer')->getSnapshot()->getValue());
+        $customercount = $database->getReference('customer')->getSnapshot()->getValue();
 
-        $usercount = User::latest()->count();
+        $usercount = User::latest()->get();
 
         $user = auth()->user()->id;
 
         $logistics = Logistic::where('firestationid',$user)->orderBy('created_at','DESC')->first(); 
 
-        return view('admin.dashboard', compact('firecount','customercount','usercount','logistics','finalcount','solved_fire'));  
+        return view('admin.dashboard', compact('fire','customercount','usercount','logistics','finalcount','solution'));  
     }
 }

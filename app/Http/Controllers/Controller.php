@@ -28,19 +28,25 @@ class Controller extends BaseController
     }
 
     public function initDB(){
-    	//new method
-    	$firebase = (new Factory)->withServiceAccount(__DIR__.'/FireguardKey.json');
-    	$database = $firebase->createDatabase();
+        //new method
+        $firebase = (new Factory)->withServiceAccount(__DIR__.'/FireguardKey.json');
+        $database = $firebase->createDatabase();
 
-    	return $database;
+        return $database;
     }
 
-
-    public function data(){
+    public function logistics(){
         $logistics = Logistic::where('firestationid',auth()->user()->id)->orderBy('created_at','DESC')->first();
 
+        if($logistics)
+            return $logistics;
+    }
 
-        if($logistics && $logistics->water_volume >= 3000 && $logistics->fire_extinguisher >= 3 && $logistics->fire_trucks >1 && $logistics->number_of_persons > 3){
+    public function data(){
+        
+        $logistics = $this->logistics();
+
+        if($logistics){
 
             $database = $this->initDB();
 

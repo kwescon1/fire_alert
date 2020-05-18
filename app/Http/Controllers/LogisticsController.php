@@ -10,7 +10,7 @@ class LogisticsController extends Controller
     //
     
 
-    public function logistics(){
+    public function logistic(){
     	//using helper
     	
     	$user = auth()->user()->id;

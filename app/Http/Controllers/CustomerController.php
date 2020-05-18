@@ -47,8 +47,8 @@ class CustomerController extends Controller
         $data = $database->getReference('fireinfo')->push([
             'device_id' => "2",
             'intensity' => "15",
-            'longitude' => "-0.0305",
-            'latitude' => "5.7748",
+            'longitude' => "-0.0307",
+            'latitude' => "5.7755",
             'status' => "Fire"
 
         ]);
