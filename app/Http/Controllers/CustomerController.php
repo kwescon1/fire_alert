@@ -45,10 +45,10 @@ class CustomerController extends Controller
         $database = $this->initDB();
 
         $data = $database->getReference('fireinfo')->push([
-            'device_id' => "2",
+            'device_id' => "6",
             'intensity' => "15",
-            'longitude' => "-0.0307",
-            'latitude' => "5.7755",
+            'longitude' => "-0.8499",
+            'latitude' => "9.3930",
             'status' => "Fire"
 
         ]);

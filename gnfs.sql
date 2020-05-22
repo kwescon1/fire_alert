@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 11:20 PM
+-- Generation Time: May 22, 2020 at 01:32 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -44,7 +44,10 @@ CREATE TABLE `logistics` (
 --
 
 INSERT INTO `logistics` (`id`, `firestationid`, `water_volume`, `fire_extinguisher`, `fire_trucks`, `number_of_persons`, `created_at`, `updated_at`) VALUES
-(1, 1, '8000', '5', '4', '12', '2020-05-05 00:00:00', NULL);
+(1, 3, '8000', '5', '4', '12', '2020-05-05 00:00:00', NULL),
+(2, 5, '8000', '5', '4', '12', '2020-05-05 00:00:00', NULL),
+(4, 8, '8000', '5', '4', '12', '2020-05-05 00:00:00', NULL),
+(5, 9, '8000', '5', '4', '12', '2020-05-05 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -121,8 +124,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `latitude`, `longitude`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Accra Fire Service', 'accra@fireservice.com', NULL, '$2y$10$5lowZn7XxZ5fzs.SWoO8KusGQLkDUh.ESZ//RSQa6b9Wr8yJu1R0u', ' 5.8142835999999996', ' 0.0746767', NULL, '2020-05-05 15:52:39', '2020-05-05 15:52:39'),
-(3, 'KNUST', 'knustfire@fireservice.com', NULL, '$2y$10$3g1nFGLwLBZPvzzQDskeuOu60FYhjAtX8yCGbJ9vqbyfdGUvdKcny', '6.6666', '1.6163', NULL, '2020-05-07 08:30:33', '2020-05-07 08:30:33');
+(3, 'KNUST', 'knustfire@fireservice.com', NULL, '$2y$10$3g1nFGLwLBZPvzzQDskeuOu60FYhjAtX8yCGbJ9vqbyfdGUvdKcny', '6.6666', '1.6163', NULL, '2020-05-07 08:30:33', '2020-05-07 08:30:33'),
+(5, 'Accra Fire Service', 'accra@fireservice.com', NULL, '$2y$10$5lowZn7XxZ5fzs.SWoO8KusGQLkDUh.ESZ//RSQa6b9Wr8yJu1R0u', '5.8142835999999996', '0.0746767', NULL, '2020-05-05 15:52:39', '2020-05-05 15:52:39'),
+(8, 'Christian Village', 'christianvillagetema@fireservice.com', NULL, '$2y$10$7CozsUpQdmZbzccTknOHruxREe4tzAhNB46CrzIsMY6QuFeoEASEC', ' 5.6131584000000005', ' -0.2359296', NULL, '2020-05-22 11:06:57', '2020-05-22 11:06:57'),
+(9, 'Tamale', 'tamale@fireservice.com', NULL, '$2y$10$Ex61twN45Zdz2rX1VwHLa.4wocg8dI17yRnc5IKmHVmmIfy75DEPa', '9.4034', '-0.8424', NULL, '2020-05-22 11:13:04', '2020-05-22 11:13:04');
 
 --
 -- Indexes for dumped tables
@@ -169,7 +174,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `logistics`
 --
 ALTER TABLE `logistics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -187,7 +192,7 @@ ALTER TABLE `resource_useds`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

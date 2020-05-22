@@ -13,6 +13,7 @@ class FireAlertController extends Controller
         $final = $this->data();
         $logistics = $this->logistics();
 
+
      return view('admin.fire_location', compact('final','logistics'));
     } 
     
