@@ -204,7 +204,7 @@
   <script src="{{asset('assets/js/now-ui-dashboard.min.js?v=1.3.0')}}" type="text/javascript"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   
-  <script src="{{asset('assets/js/custom.js')}}"></script>
+  {{-- <script src="{{asset('assets/js/custom.js')}}"></script> --}}
 
   
 

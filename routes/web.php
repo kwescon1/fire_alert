@@ -48,4 +48,5 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::get('fire','CustomerController@fireInfo');
+Route::get('check','Controller@data');
 

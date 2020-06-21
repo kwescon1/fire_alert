@@ -506,7 +506,7 @@ demo = {
     trackLocation({
       onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
         marker.setPosition({ lat, lng });
-        marker.setPosition('Current Position');
+        // marker.setPosition('Current Position');
         map.panTo({ lat, lng });
         // Print out the user's location.
         $info.textContent = `Lat: ${lat} Lng: ${lng}`;

@@ -41,18 +41,18 @@ class CustomerController extends Controller
         }
     }
 
-    public function fireInfo(){
-        $database = $this->initDB();
+    // public function fireInfo(){
+    //     $database = $this->initDB();
 
-        $data = $database->getReference('fireinfo')->push([
-            'device_id' => "6",
-            'intensity' => "15",
-            'longitude' => "-0.8499",
-            'latitude' => "9.3930",
-            'status' => "Fire"
+    //     $data = $database->getReference('fireinfo')->push([
+    //         'device_id' => "6",
+    //         'intensity' => "15",
+    //         'longitude' => "-0.8499",
+    //         'latitude' => "9.3930",
+    //         'status' => "Fire"
 
-        ]);
+    //     ]);
 
-        return "data entered successfully";
-    }
+    //     return "data entered successfully";
+    // }
 }

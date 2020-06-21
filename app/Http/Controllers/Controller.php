@@ -120,12 +120,15 @@ class Controller extends BaseController
                 'stations' => $temp_stations
             ]);
         }
+
+        // return $temp;
         
         return $this->check($temp);
 
     }
 
     public function check($temps){
+        // return $temps;
             
         $final = [];
 
