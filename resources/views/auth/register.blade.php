@@ -19,6 +19,12 @@
                         @if (Session::has('failure'))
                             <div class="alert alert-info">{{ Session::get('failure') }}</div>
                         @endif
+                        @if(Session::has('success'))
+
+                        <div class="alert alert-info">{{ Session::get('success') }}</div>
+    
+                       
+                        @endif
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
